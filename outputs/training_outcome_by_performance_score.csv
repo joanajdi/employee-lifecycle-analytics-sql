@@ -1,0 +1,17 @@
+performance_score,training_outcome,total_trainings,percentage_within_performance_score
+Exceeds,Completed,100,27.10
+Exceeds,Passed,99,26.83
+Exceeds,Incomplete,87,23.58
+Exceeds,Failed,83,22.49
+Fully Meets,Incomplete,630,26.68
+Fully Meets,Completed,595,25.20
+Fully Meets,Failed,571,24.18
+Fully Meets,Passed,565,23.93
+Needs Improvement,Completed,49,27.68
+Needs Improvement,Passed,48,27.12
+Needs Improvement,Incomplete,41,23.16
+Needs Improvement,Failed,39,22.03
+PIP,Passed,27,29.03
+PIP,Completed,26,27.96
+PIP,Failed,23,24.73
+PIP,Incomplete,17,18.28

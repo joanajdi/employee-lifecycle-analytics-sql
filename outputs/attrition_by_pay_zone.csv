@@ -1,0 +1,4 @@
+pay_zone,total_employees,active_employees,non_active_employees,terminated_employees,non_active_rate,termination_rate
+Zone A,1062,868,194,145,18.27,13.65
+Zone B,985,800,185,134,18.78,13.60
+Zone C,953,790,163,108,17.10,11.33

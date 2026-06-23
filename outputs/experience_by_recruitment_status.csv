@@ -1,0 +1,6 @@
+status,total_applicants,avg_years_of_experience,min_years_of_experience,max_years_of_experience
+Rejected,594,10.32,0,20
+Interviewing,590,10.10,0,20
+Offered,610,10.00,0,20
+Applied,611,9.83,0,20
+In Review,595,9.57,0,20

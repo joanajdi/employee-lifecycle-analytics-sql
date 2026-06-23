@@ -1,0 +1,11 @@
+business_unit,total_employees,active_employees,non_active_employees,terminated_employees,non_active_rate,termination_rate
+BPC,303,243,60,45,19.80,14.85
+NEL,304,246,58,45,19.08,14.80
+MSC,296,239,57,43,19.26,14.53
+TNS,297,242,55,41,18.52,13.80
+PL,301,246,55,37,18.27,12.29
+EW,302,245,57,37,18.87,12.25
+PYZ,299,250,49,35,16.39,11.71
+CCDR,300,249,51,35,17.00,11.67
+WBL,294,252,42,34,14.29,11.56
+SVG,304,246,58,35,19.08,11.51

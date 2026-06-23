@@ -1,0 +1,7 @@
+department_type,voluntary_terminations,involuntary_terminations,total_terminations,voluntary_share_of_terminations,involuntary_share_of_terminations
+Production       ,287,35,322,89.13,10.87
+IT/IS,3,31,34,8.82,91.18
+Software Engineering,20,0,20,100.00,0.00
+Sales,10,0,10,100.00,0.00
+Admin Offices,1,0,1,100.00,0.00
+Executive Office,0,0,0,,

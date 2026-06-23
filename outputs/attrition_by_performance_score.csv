@@ -1,0 +1,5 @@
+performance_score,total_employees,active_employees,non_active_employees,terminated_employees,non_active_rate,termination_rate,avg_employee_rating
+PIP,93,68,25,18,26.88,19.35,2.96
+Fully Meets,2361,1942,419,309,17.75,13.09,2.96
+Needs Improvement,177,142,35,20,19.77,11.30,3.04
+Exceeds,369,306,63,40,17.07,10.84,2.97

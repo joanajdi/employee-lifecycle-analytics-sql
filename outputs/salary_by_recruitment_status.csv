@@ -1,0 +1,6 @@
+status,total_applicants,avg_desired_salary,min_desired_salary,max_desired_salary
+Applied,611,66255.94,30263.80,99917.53
+Offered,610,65740.77,30187.59,99992.66
+Interviewing,590,65447.71,30047.22,99991.80
+In Review,595,64017.23,30060.29,99976.54
+Rejected,594,63886.40,30106.63,99836.77

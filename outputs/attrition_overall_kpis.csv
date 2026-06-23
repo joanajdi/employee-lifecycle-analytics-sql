@@ -1,0 +1,2 @@
+total_employees,active_employees,non_active_employees,terminated_employees,voluntarily_terminated_employees,terminated_for_cause_employees,non_active_rate,termination_rate,voluntary_termination_rate,involuntary_termination_rate
+3000,2458,542,387,321,66,18.07,12.90,10.70,2.20

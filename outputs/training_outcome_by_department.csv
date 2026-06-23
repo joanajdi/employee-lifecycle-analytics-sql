@@ -1,0 +1,25 @@
+department_type,training_outcome,total_trainings,percentage_within_department
+Admin Offices,Passed,22,27.50
+Admin Offices,Completed,20,25.00
+Admin Offices,Incomplete,20,25.00
+Admin Offices,Failed,18,22.50
+Executive Office,Failed,7,29.17
+Executive Office,Passed,7,29.17
+Executive Office,Incomplete,5,20.83
+Executive Office,Completed,5,20.83
+IT/IS,Failed,129,30.00
+IT/IS,Completed,113,26.28
+IT/IS,Passed,104,24.19
+IT/IS,Incomplete,84,19.53
+Production       ,Incomplete,554,27.43
+Production       ,Passed,506,25.05
+Production       ,Completed,502,24.85
+Production       ,Failed,458,22.67
+Sales,Completed,96,29.00
+Sales,Incomplete,87,26.28
+Sales,Passed,75,22.66
+Sales,Failed,73,22.05
+Software Engineering,Completed,34,29.57
+Software Engineering,Failed,31,26.96
+Software Engineering,Passed,25,21.74
+Software Engineering,Incomplete,25,21.74

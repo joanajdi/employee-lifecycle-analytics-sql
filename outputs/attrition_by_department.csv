@@ -1,0 +1,7 @@
+department_type,total_employees,active_employees,non_active_employees,terminated_employees,non_active_rate,termination_rate
+Software Engineering,115,92,23,20,20.00,17.39
+Production       ,2020,1588,432,322,21.39,15.94
+IT/IS,430,375,55,34,12.79,7.91
+Sales,331,301,30,10,9.06,3.02
+Admin Offices,80,78,2,1,2.50,1.25
+Executive Office,24,24,0,0,0.00,0.00

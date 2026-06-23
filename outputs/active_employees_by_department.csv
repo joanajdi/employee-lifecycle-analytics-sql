@@ -1,0 +1,7 @@
+department_type,active_employees,inactive_employees,total_employees,active_percentage
+Production       ,1588,432,2020,78.61
+IT/IS,375,55,430,87.21
+Sales,301,30,331,90.94
+Software Engineering,92,23,115,80.00
+Admin Offices,78,2,80,97.50
+Executive Office,24,0,24,100.00

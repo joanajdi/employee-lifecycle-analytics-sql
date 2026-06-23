@@ -1,0 +1,6 @@
+employee_status,total_employees,avg_engagement_score,avg_satisfaction_score,avg_work_life_balance_score
+Future Start,69,2.96,2.88,3.12
+Active,2458,2.95,3.01,3.00
+Terminated for Cause,66,2.91,3.20,2.73
+Voluntarily Terminated,321,2.90,3.10,2.93
+Leave of Absence,86,2.86,2.92,2.88

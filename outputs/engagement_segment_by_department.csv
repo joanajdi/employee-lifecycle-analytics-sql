@@ -1,0 +1,19 @@
+department_type,engagement_segment,total_employees,percentage_within_department
+Admin Offices,Low Engagement,37,46.25
+Admin Offices,High Engagement,33,41.25
+Admin Offices,Medium Engagement,10,12.50
+Executive Office,High Engagement,10,41.67
+Executive Office,Medium Engagement,8,33.33
+Executive Office,Low Engagement,6,25.00
+IT/IS,High Engagement,176,40.93
+IT/IS,Low Engagement,170,39.53
+IT/IS,Medium Engagement,84,19.53
+Production       ,Low Engagement,885,43.81
+Production       ,High Engagement,771,38.17
+Production       ,Medium Engagement,364,18.02
+Sales,High Engagement,137,41.39
+Sales,Low Engagement,133,40.18
+Sales,Medium Engagement,61,18.43
+Software Engineering,Low Engagement,42,36.52
+Software Engineering,High Engagement,41,35.65
+Software Engineering,Medium Engagement,32,27.83

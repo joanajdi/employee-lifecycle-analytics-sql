@@ -1,0 +1,26 @@
+# macOS system files
+.DS_Store
+
+# Logs
+*.log
+
+# Environment files
+.env
+.venv/
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# PostgreSQL / database dumps
+*.dump
+*.backup
+*.sql.gz
+
+# Temporary files
+*.tmp
+*.temp
+
+# VS Code local settings
+.vscode/

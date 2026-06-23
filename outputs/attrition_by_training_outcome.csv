@@ -1,0 +1,5 @@
+training_outcome,total_employees,active_employees,non_active_employees,terminated_employees,non_active_rate,termination_rate
+Passed,739,594,145,115,19.62,15.56
+Incomplete,775,632,143,99,18.45,12.77
+Failed,716,582,134,86,18.72,12.01
+Completed,770,650,120,87,15.58,11.30

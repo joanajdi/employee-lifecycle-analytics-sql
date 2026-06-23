@@ -1,0 +1,4 @@
+engagement_segment,total_employees,active_employees,non_active_employees,terminated_employees,non_active_rate,termination_rate
+Low Engagement,1273,1035,238,169,18.70,13.28
+Medium Engagement,559,460,99,72,17.71,12.88
+High Engagement,1168,963,205,146,17.55,12.50

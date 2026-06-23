@@ -1,0 +1,5 @@
+performance_score,total_trainings,total_training_cost,avg_training_cost,avg_training_duration_days
+Fully Meets,2361,1314021.88,556.55,2.99
+Exceeds,369,206658.22,560.05,2.92
+Needs Improvement,177,99969.04,564.80,3.01
+PIP,93,55236.95,593.95,2.89

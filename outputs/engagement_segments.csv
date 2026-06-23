@@ -1,0 +1,4 @@
+engagement_segment,total_employees,percentage,avg_satisfaction_score,avg_work_life_balance_score
+Low Engagement,1273,42.43,3.03,2.95
+High Engagement,1168,38.93,3.00,3.01
+Medium Engagement,559,18.63,3.04,3.05

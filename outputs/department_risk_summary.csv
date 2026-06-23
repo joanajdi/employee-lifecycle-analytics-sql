@@ -1,0 +1,7 @@
+department_type,total_employees,termination_rate,avg_engagement_score,avg_satisfaction_score,avg_work_life_balance_score,avg_employee_rating,avg_training_cost
+Software Engineering,115,17.39,2.97,3.11,3.01,2.90,596.71
+Production       ,2020,15.94,2.91,3.02,2.96,2.98,559.50
+IT/IS,430,7.91,3.03,3.01,3.00,2.97,563.63
+Sales,331,3.02,2.99,3.13,3.06,2.91,536.76
+Admin Offices,80,1.25,2.93,2.51,3.19,3.03,537.56
+Executive Office,24,0.00,3.38,3.08,3.29,2.79,585.47

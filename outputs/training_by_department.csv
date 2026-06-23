@@ -1,0 +1,7 @@
+department_type,total_trainings,employees_with_training,total_training_cost,avg_training_cost,avg_training_duration_days
+Production       ,2020,2020,1130181.05,559.50,2.97
+IT/IS,430,430,242359.86,563.63,3.05
+Sales,331,331,177667.88,536.76,2.92
+Software Engineering,115,115,68621.63,596.71,2.91
+Admin Offices,80,80,43004.40,537.56,2.95
+Executive Office,24,24,14051.27,585.47,2.96

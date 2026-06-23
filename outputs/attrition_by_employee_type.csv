@@ -1,0 +1,4 @@
+employee_type,total_employees,active_employees,non_active_employees,terminated_employees,non_active_rate,termination_rate
+Full-Time,1038,850,188,147,18.11,14.16
+Part-Time,954,779,175,118,18.34,12.37
+Contract,1008,829,179,122,17.76,12.10
