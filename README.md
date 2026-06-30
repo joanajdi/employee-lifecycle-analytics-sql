@@ -22,18 +22,6 @@ This project was developed as part of my analytics portfolio, with a focus on ap
 
 ---
 
-## Executive Summary
-
-* The dataset contains 3,000 employees and combines recruitment, workforce, engagement, training and attrition data.
-* 2,458 employees are active, representing 81.93% of the workforce.
-* The overall termination rate is 12.90%, mostly driven by voluntary terminations.
-* Production represents 67.33% of the workforce and concentrates the highest absolute number of terminations.
-* Software Engineering has the highest termination rate, at 17.39%.
-* Engagement shows only a weak relationship with attrition in this dataset.
-* The final analytical view, `employee_lifecycle_summary`, combines all employee lifecycle data into one reusable employee-level dataset.
-
----
-
 ## Business Objective
 
 The main business objective is to answer the following question:
@@ -72,11 +60,16 @@ Monetary values are reported as provided in the dataset. The original dataset do
 
 ## Tools Used
 
-* PostgreSQL
-* SQL
-* VS Code
-* Terminal
-* CSV exports for analytical outputs
+- PostgreSQL
+- SQL
+- Python
+- pandas
+- scikit-learn
+- matplotlib
+- VS Code
+- Terminal
+- Git and GitHub
+- CSV exports for analytical outputs
 
 ---
 
@@ -146,6 +139,11 @@ employee-lifecycle-analytics-sql/
 │   ├── data_dictionary.md
 │   └── project_notes.md
 │
+├── notebooks/
+│   └── attrition_prediction_model.ipynb
+│
+├── requirements.txt
+├── .gitignore
 └── README.md
 ```
 
@@ -344,7 +342,30 @@ This view can be reused for further SQL exploration, reporting, dashboard develo
 
 ---
 
-## SQL Skills Demonstrated
+## Predictive Attrition Modeling
+
+As an extension of the SQL analysis, a Python notebook was created to test whether the final analytical view could be used for employee attrition prediction.
+
+The notebook uses `employee_lifecycle_summary.csv`, generated from the SQL pipeline, as the modeling dataset.
+
+The target variable is:
+
+- `termination_flag`
+
+Several classification models were tested:
+
+- Logistic Regression
+- Decision Tree
+- Random Forest
+- Random Forest without tenure variables
+
+The initial Random Forest model achieved the best overall performance, with a ROC-AUC of 0.8150 and recall of 0.7922 for the terminated class.
+
+However, feature importance analysis showed that `tenure_days` and `tenure_years` were the strongest predictors. Since tenure was calculated using exit dates for terminated employees, this raised a potential data leakage concern.
+
+To address this, a second Random Forest model was trained without tenure variables. Its performance decreased substantially, with ROC-AUC dropping to 0.6581.
+
+This comparison showed that the model with tenure performs better as an exploratory model, while the model without tenure provides a more realistic view of the dataset's predictive limitations.
 
 ## Key SQL Concepts Demonstrated
 
@@ -446,6 +467,26 @@ psql employee_lifecycle_db -f sql/15_final_employee_lifecycle_view.sql
 psql employee_lifecycle_db -f sql/16_export_final_view.sql
 ```
 
+### Run the Python Notebook
+
+After generating the SQL outputs, install the required Python packages with:
+
+```bash
+pip install -r requirements.txt
+```
+
+Then open the notebook in VS Code or Jupyter:
+
+```bash
+notebooks/attrition_prediction_model.ipynb
+```
+
+The notebook uses the following file as input:
+
+```bash
+outputs/employee_lifecycle_summary.csv
+```
+
 ---
 
 ## Documentation
@@ -465,7 +506,15 @@ Some patterns in the dataset appear highly balanced, especially recruitment stat
 
 For this reason, the insights should be interpreted as exploratory findings rather than causal conclusions.
 
-The project focuses on SQL-based analysis and does not apply statistical modeling or predictive machine learning.
+The predictive attrition modeling component should also be interpreted with caution. The initial Random Forest model achieved stronger performance when tenure variables were included, but feature importance analysis showed that `tenure_days` and `tenure_years` were the strongest predictors.
+
+Since tenure was calculated using exit dates for terminated employees and the current date for active employees, these variables may introduce data leakage in a predictive context. To address this, a second Random Forest model was trained without tenure variables, resulting in lower but more realistic predictive performance.
+
+The recruitment-to-employee link is based on the assumption that `applicant_id` corresponds to `employee_id`. In a real HR system, these identifiers may be stored separately and connected through a dedicated hiring or onboarding table.
+
+Each employee has only one engagement survey record and one training record, which limits longitudinal analysis.
+
+The dataset does not specify the currency for salary or training cost fields.
 
 ---
 
@@ -473,4 +522,8 @@ The project focuses on SQL-based analysis and does not apply statistical modelin
 
 This project shows how SQL can be used to analyze the full employee lifecycle, from recruitment to engagement, training, performance and attrition.
 
-The analysis highlights how HR data can be transformed into structured insights to support decisions around workforce planning, employee experience, training investment and retention.
+The SQL workflow transformed raw HR data into structured analytical tables, standardized views, exported CSV outputs and a final employee-level analytical view.
+
+The Python modeling extension demonstrated how the final SQL analytical dataset can be reused for predictive attrition modeling. Several classification models were tested, and the analysis highlighted the importance of evaluating model performance, checking for data leakage and interpreting predictive results carefully.
+
+Overall, the project demonstrates an end-to-end analytics workflow, from data modeling and SQL analysis to documentation, version control and machine learning experimentation.
