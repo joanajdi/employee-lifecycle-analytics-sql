@@ -386,15 +386,50 @@ Engagement, satisfaction, work-life balance, training outcomes and performance s
 The final analytical view, `employee_lifecycle_summary`, enables further analysis by combining employee profile, recruitment, engagement, training, performance and attrition data into a single employee-level dataset.
 
 ---
+## Cohort and Early Attrition Findings
+
+### Key Findings
+
+The cohort and early attrition analysis added a temporal perspective to the attrition analysis by examining when employees leave after joining the organization.
+
+Overall, 96 employees left within the first 6 months, representing 3.20% of the workforce. A total of 176 employees left within the first 12 months, representing 5.87% of the workforce.
+
+Among the 387 terminated employees, approximately 24.8% left within their first 6 months and approximately 45.5% left within their first 12 months. This suggests that a substantial share of attrition occurs during the first year of employment.
+
+At department level, Software Engineering had the highest 12-month early attrition rate, at 8.70%, followed by Production, at 6.98%. However, Production had the highest absolute number of early attrition cases, reflecting its large workforce size.
+
+By employee type, Full-Time employees had the highest 12-month early attrition rate, at 7.13%, followed by Part-Time employees at 5.45% and Contract employees at 4.96%.
+
+By performance score, employees in PIP had the highest 12-month early attrition rate, at 7.53%. However, differences across performance groups were not extremely large.
+
+Engagement segment did not show a clear linear relationship with early attrition. High Engagement employees had the highest 12-month early attrition rate, at 6.25%, followed by Low Engagement at 5.89% and Medium Engagement at 5.01%.
+
+By recruitment status, employees associated with the Rejected category had the highest 12-month early attrition rate, at 7.41%. However, this result should be interpreted with caution because the recruitment-to-employee relationship is based on the project assumption that `applicant_id` corresponds to `employee_id`.
+
+### Visualization Notes
+
+A Python notebook was created to visualize the cohort and early attrition outputs generated in SQL.
+
+The visualizations show that older start-year cohorts generally have higher termination rates, while the 2023 cohort has the lowest termination rate. This should be interpreted carefully because more recent cohorts had less time to experience attrition.
+
+The early attrition visualizations also reinforce that Software Engineering has the highest proportional early attrition risk, while Production represents the largest operational impact due to its workforce size.
+
+### Interpretation Notes
+
+The cohort analysis by start year showed that older cohorts generally had higher termination rates. However, this should be interpreted carefully because older cohorts had more time to experience attrition.
+
+Early attrition metrics provide a fairer comparison by focusing on fixed time windows, such as the first 6 or 12 months after start date.
+
+The results suggest that early attrition may be particularly relevant in Software Engineering and Production. In practical HR terms, this could point to the need to further investigate onboarding, role expectations, job fit and early employee experience in these areas.
+
+The lack of a clear relationship between engagement segment and early attrition reinforces a broader finding from the project: engagement alone does not strongly explain attrition patterns in this dataset.
 
 ## Notes for Future Analysis
 
-This SQL project provides a strong analytical foundation. Future extensions could include:
+This project provides a strong analytical foundation. Future extensions could include:
 
-* building a Power BI dashboard using the exported CSV outputs;
-* using the final analytical view for predictive attrition modeling;
-* conducting cohort analysis by start year or start month;
-* analyzing tenure bands and early attrition;
-* comparing voluntary and involuntary attrition drivers separately;
-* creating department-level HR risk scores;
-* exploring whether engagement and training variables interact with performance outcomes.
+- building a Power BI dashboard using the exported CSV outputs;
+- comparing voluntary and involuntary attrition drivers separately;
+- creating department-level HR risk scores;
+- exploring whether engagement and training variables interact with performance outcomes;
+- extending predictive modeling with additional historical HR variables, such as promotion history, salary progression, absenteeism, manager changes and repeated engagement surveys.

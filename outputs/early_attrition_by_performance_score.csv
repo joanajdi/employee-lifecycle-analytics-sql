@@ -1,0 +1,5 @@
+performance_score,total_employees,terminated_employees,termination_rate_pct,early_attrition_6m_employees,early_attrition_6m_rate_pct,early_attrition_12m_employees,early_attrition_12m_rate_pct
+PIP,93,18,19.35,3,3.23,7,7.53
+Needs Improvement,177,20,11.30,6,3.39,11,6.21
+Fully Meets,2361,309,13.09,76,3.22,139,5.89
+Exceeds,369,40,10.84,11,2.98,19,5.15

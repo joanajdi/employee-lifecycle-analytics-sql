@@ -1,0 +1,6 @@
+recruitment_status,total_employees,terminated_employees,termination_rate_pct,early_attrition_6m_employees,early_attrition_6m_rate_pct,early_attrition_12m_employees,early_attrition_12m_rate_pct
+Rejected,594,87,14.65,23,3.87,44,7.41
+Applied,611,81,13.26,18,2.95,39,6.38
+In Review,595,74,12.44,13,2.18,33,5.55
+Offered,610,73,11.97,22,3.61,31,5.08
+Interviewing,590,72,12.20,20,3.39,29,4.92

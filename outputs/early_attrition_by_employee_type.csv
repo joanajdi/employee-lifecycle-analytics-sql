@@ -1,0 +1,4 @@
+employee_type,total_employees,terminated_employees,termination_rate_pct,early_attrition_6m_employees,early_attrition_6m_rate_pct,early_attrition_12m_employees,early_attrition_12m_rate_pct
+Full-Time,1038,147,14.16,40,3.85,74,7.13
+Part-Time,954,118,12.37,27,2.83,52,5.45
+Contract,1008,122,12.10,29,2.88,50,4.96

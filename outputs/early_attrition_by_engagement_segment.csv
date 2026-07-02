@@ -1,0 +1,4 @@
+engagement_segment,total_employees,terminated_employees,termination_rate_pct,early_attrition_6m_employees,early_attrition_6m_rate_pct,early_attrition_12m_employees,early_attrition_12m_rate_pct
+High Engagement,1168,146,12.50,35,3.00,73,6.25
+Low Engagement,1273,169,13.28,43,3.38,75,5.89
+Medium Engagement,559,72,12.88,18,3.22,28,5.01

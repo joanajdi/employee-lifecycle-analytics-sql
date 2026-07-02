@@ -124,6 +124,8 @@ employee-lifecycle-analytics-sql/
 │   ├── 14_export_attrition_outputs.sql
 │   ├── 15_final_employee_lifecycle_view.sql
 │   └── 16_export_final_view.sql
+│   ├── 17_cohort_early_attrition_analysis.sql
+│   └── 18_export_cohort_outputs.sql
 │
 ├── outputs/
 │   ├── workforce_overall_kpis.csv
@@ -134,13 +136,22 @@ employee-lifecycle-analytics-sql/
 │   ├── attrition_by_department.csv
 │   ├── department_risk_summary.csv
 │   └── employee_lifecycle_summary.csv
+│   ├── attrition_by_start_year.csv
+│   ├── attrition_by_start_month.csv
+│   ├── early_attrition_overall.csv
+│   ├── early_attrition_by_department.csv
+│   ├── early_attrition_by_employee_type.csv
+│   ├── early_attrition_by_performance_score.csv
+│   ├── early_attrition_by_engagement_segment.csv
+│   └── early_attrition_by_recruitment_status.csv
 │
 ├── docs/
 │   ├── data_dictionary.md
 │   └── project_notes.md
 │
 ├── notebooks/
-│   └── attrition_prediction_model.ipynb
+│   ├── attrition_prediction_model.ipynb
+│   └── cohort_early_attrition_visualization.ipynb
 │
 ├── requirements.txt
 ├── .gitignore
@@ -320,6 +331,29 @@ Main findings:
 
 ---
 
+### 8. Cohort and Early Attrition Analysis
+
+This module analyzes employee attrition from a cohort and early-tenure perspective.
+
+Key questions:
+
+- Do some hiring cohorts show higher attrition rates than others?
+- How much attrition happens within the first 6 and 12 months?
+- Which departments have higher early attrition?
+- How does early attrition vary by employee type, performance score, engagement segment and recruitment status?
+
+Main findings:
+
+- 96 employees left within the first 6 months, representing 3.20% of the workforce.
+- 176 employees left within the first 12 months, representing 5.87% of the workforce.
+- Around 24.8% of terminated employees left within their first 6 months.
+- Around 45.5% of terminated employees left within their first 12 months.
+- Software Engineering had the highest 12-month early attrition rate by department, at 8.70%.
+- Production had the highest absolute number of early attrition cases.
+- Full-Time employees had the highest 12-month early attrition rate by employee type, at 7.13%.
+- Employees in PIP had the highest 12-month early attrition rate by performance group, at 7.53%.
+- Engagement segment did not show a clear linear relationship with early attrition.
+
 ## Final Analytical View
 
 The final view `employee_lifecycle_summary` combines employee, recruitment, engagement and training data into a single analytical layer.
@@ -367,6 +401,22 @@ To address this, a second Random Forest model was trained without tenure variabl
 
 This comparison showed that the model with tenure performs better as an exploratory model, while the model without tenure provides a more realistic view of the dataset's predictive limitations.
 
+## Cohort and Early Attrition Visualizations
+
+A second Python notebook was created to visualize the cohort and early attrition outputs generated in SQL.
+
+The notebook uses the exported CSV files from the `outputs/` folder and creates matplotlib visualizations for:
+
+- termination rate by start year;
+- overall early attrition within 6 and 12 months;
+- 12-month early attrition by department;
+- 12-month early attrition by employee type;
+- 12-month early attrition by performance score;
+- 12-month early attrition by engagement segment;
+- 12-month early attrition by recruitment status.
+
+These visualizations help communicate the main temporal attrition patterns and make the SQL outputs easier to interpret.
+
 ## Key SQL Concepts Demonstrated
 
 This project demonstrates several SQL concepts commonly used in analytics workflows.
@@ -395,16 +445,24 @@ These concepts were applied across a full SQL analytics workflow: database creat
 
 The project generates several CSV outputs, including:
 
-| Output                                | Description                              |
-| ------------------------------------- | ---------------------------------------- |
-| `workforce_overall_kpis.csv`          | Overall workforce KPIs                   |
-| `headcount_by_department.csv`         | Employee count by department             |
-| `recruitment_status_distribution.csv` | Recruitment funnel status distribution   |
-| `training_outcome_distribution.csv`   | Training outcome distribution            |
-| `engagement_segments.csv`             | Low, medium and high engagement segments |
-| `attrition_by_department.csv`         | Attrition metrics by department          |
-| `department_risk_summary.csv`         | Combined department-level risk summary   |
-| `employee_lifecycle_summary.csv`      | Final employee-level analytical dataset  |
+| Output                                      | Description                                         |
+| --------------------------------------------| --------------------------------------------------- |
+| `workforce_overall_kpis.csv`                | Overall workforce KPIs                              |
+| `headcount_by_department.csv`               | Employee count by department                        |
+| `recruitment_status_distribution.csv`.      | Recruitment funnel status distribution              |
+| `training_outcome_distribution.csv`         | Training outcome distribution                       |
+| `engagement_segments.csv`                   | Low, medium and high engagement segments            |
+| `attrition_by_department.csv`               | Attrition metrics by department                     |
+| `department_risk_summary.csv`               | Combined department-level risk summary              |
+| `employee_lifecycle_summary.csv`            | Final employee-level analytical dataset             |
+| `attrition_by_start_year.csv`               | Termination rate by employee start year             |
+| `attrition_by_start_month.csv`              | Termination rate by employee start month            |
+| `early_attrition_overall.csv`               | Overall early attrition within 6 and 12 months      |
+| `early_attrition_by_department.csv`         | Early attrition metrics by department               |
+| `early_attrition_by_employee_type.csv`.     | Early attrition metrics by employee type            | 
+| `early_attrition_by_performance_score.csv`  | Early attrition metrics by performance score        |
+| `early_attrition_by_engagement_segment.csv` | Early attrition metrics by engagement segment       |
+| `early_attrition_by_recruitment_status.csv` | Early attrition metrics by recruitment status       |
 
 ---
 
@@ -448,6 +506,7 @@ psql employee_lifecycle_db -f sql/07_recruitment_funnel.sql
 psql employee_lifecycle_db -f sql/09_training_analysis.sql
 psql employee_lifecycle_db -f sql/11_engagement_analysis.sql
 psql employee_lifecycle_db -f sql/13_attrition_analysis.sql
+psql employee_lifecycle_db -f sql/17_cohort_early_attrition_analysis.sql
 ```
 
 7. Export analytical outputs:
@@ -458,6 +517,7 @@ psql employee_lifecycle_db -f sql/08_export_recruitment_outputs.sql
 psql employee_lifecycle_db -f sql/10_export_training_outputs.sql
 psql employee_lifecycle_db -f sql/12_export_engagement_outputs.sql
 psql employee_lifecycle_db -f sql/14_export_attrition_outputs.sql
+psql employee_lifecycle_db -f sql/18_export_cohort_outputs.sql
 ```
 
 8. Create and export the final analytical view:
@@ -467,7 +527,7 @@ psql employee_lifecycle_db -f sql/15_final_employee_lifecycle_view.sql
 psql employee_lifecycle_db -f sql/16_export_final_view.sql
 ```
 
-### Run the Python Notebook
+### Run the Python Notebooks
 
 After generating the SQL outputs, install the required Python packages with:
 
@@ -475,18 +535,15 @@ After generating the SQL outputs, install the required Python packages with:
 pip install -r requirements.txt
 ```
 
-Then open the notebook in VS Code or Jupyter:
+Then open the notebooks in VS Code or Jupyter:
 
 ```bash
 notebooks/attrition_prediction_model.ipynb
+notebooks/cohort_early_attrition_visualization.ipynb
 ```
 
-The notebook uses the following file as input:
-
-```bash
-outputs/employee_lifecycle_summary.csv
+The notebooks use CSV files from the `outputs/` folder as input.
 ```
-
 ---
 
 ## Documentation

@@ -256,30 +256,32 @@ Main areas included:
 
 This section explains the main derived fields created during the project.
 
-| Field                            | Description                                                                     |
-| -------------------------------- | ------------------------------------------------------------------------------- |
-| `employee_status_group`          | Groups employees into Active and Non-Active.                                    |
-| `termination_flag`               | Indicates whether the employee has a termination status.                        |
-| `voluntary_termination_flag`     | Indicates whether the employee was voluntarily terminated.                      |
-| `involuntary_termination_flag`   | Indicates whether the employee was terminated for cause.                        |
-| `active_flag`                    | Equals 1 for active employees, otherwise 0.                                     |
-| `non_active_flag`                | Equals 1 for non-active employees, otherwise 0.                                 |
-| `tenure_days`                    | Employee tenure calculated in days.                                             |
-| `tenure_years`                   | Employee tenure calculated in years.                                            |
-| `application_month`              | Month extracted from the application date.                                      |
-| `engagement_segment`             | Groups engagement score into Low, Medium and High Engagement.                   |
-| `satisfaction_segment`           | Groups satisfaction score into Low, Medium and High Satisfaction.               |
-| `work_life_balance_segment`      | Groups work-life balance score into Low, Medium and High Work-Life Balance.     |
-| `training_cost_segment`          | Groups training cost into Low, Medium and High Cost.                            |
-| `training_duration_segment`      | Groups training duration into Short, Medium and Long Training.                  |
-| `training_timing`                | Indicates whether training occurred before or on/after the employee start date. |
-| `low_engagement_flag`            | Equals 1 when engagement score is 1 or 2.                                       |
-| `low_satisfaction_flag`          | Equals 1 when satisfaction score is 1 or 2.                                     |
-| `low_work_life_balance_flag`     | Equals 1 when work-life balance score is 1 or 2.                                |
-| `positive_training_outcome_flag` | Equals 1 when training outcome is Completed or Passed.                          |
-| `negative_training_outcome_flag` | Equals 1 when training outcome is Incomplete or Failed.                         |
-| `low_performance_flag`           | Equals 1 when performance score is Needs Improvement or PIP.                    |
-| `high_performance_flag`          | Equals 1 when performance score is Exceeds.                                     |
+| Field                            | Description                                                                         |
+| -------------------------------- | -------------------------------------------------------------------------------     |
+| `employee_status_group`          | Groups employees into Active and Non-Active.                                        |
+| `termination_flag`               | Indicates whether the employee has a termination status.                            |
+| `voluntary_termination_flag`     | Indicates whether the employee was voluntarily terminated.                          |
+| `involuntary_termination_flag`   | Indicates whether the employee was terminated for cause.                            | 
+| `active_flag`                    | Equals 1 for active employees, otherwise 0.                                         |
+| `non_active_flag`                | Equals 1 for non-active employees, otherwise 0.                                     |
+| `tenure_days`                    | Employee tenure calculated in days.                                                 |
+| `tenure_years`                   | Employee tenure calculated in years.                                                |
+| `application_month`              | Month extracted from the application date.                                          |
+| `engagement_segment`             | Groups engagement score into Low, Medium and High Engagement.                       |
+| `satisfaction_segment`           | Groups satisfaction score into Low, Medium and High Satisfaction.                   |
+| `work_life_balance_segment`      | Groups work-life balance score into Low, Medium and High Work-Life Balance.         |
+| `training_cost_segment`          | Groups training cost into Low, Medium and High Cost.                                |
+| `training_duration_segment`      | Groups training duration into Short, Medium and Long Training.                      |
+| `training_timing`                | Indicates whether training occurred before or on/after the employee start date.     |
+| `low_engagement_flag`            | Equals 1 when engagement score is 1 or 2.                                           | 
+| `low_satisfaction_flag`          | Equals 1 when satisfaction score is 1 or 2.                                         |
+| `low_work_life_balance_flag`     | Equals 1 when work-life balance score is 1 or 2.                                    |
+| `positive_training_outcome_flag` | Equals 1 when training outcome is Completed or Passed.                              |
+| `negative_training_outcome_flag` | Equals 1 when training outcome is Incomplete or Failed.                             |
+| `low_performance_flag`           | Equals 1 when performance score is Needs Improvement or PIP.                        |
+| `high_performance_flag`          | Equals 1 when performance score is Exceeds.                                         |
+| `early_attrition_6m_flag`        | Indicates whether a terminated employee exited within 6 months of their start date. |
+| `early_attrition_12m_flag`       | Indicates whether a terminated employee exited within 12 months of their start date.|
 
 ---
 

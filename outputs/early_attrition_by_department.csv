@@ -1,0 +1,7 @@
+department_type,total_employees,terminated_employees,termination_rate_pct,early_attrition_6m_employees,early_attrition_6m_rate_pct,early_attrition_12m_employees,early_attrition_12m_rate_pct
+Software Engineering,115,20,17.39,5,4.35,10,8.70
+Production,2020,322,15.94,78,3.86,141,6.98
+IT/IS,430,34,7.91,12,2.79,19,4.42
+Sales,331,10,3.02,1,0.30,5,1.51
+Admin Offices,80,1,1.25,0,0.00,1,1.25
+Executive Office,24,0,0.00,0,0.00,0,0.00
