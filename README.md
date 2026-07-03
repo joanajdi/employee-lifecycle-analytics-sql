@@ -543,7 +543,7 @@ notebooks/cohort_early_attrition_visualization.ipynb
 ```
 
 The notebooks use CSV files from the `outputs/` folder as input.
-```
+
 ---
 
 ## Documentation
