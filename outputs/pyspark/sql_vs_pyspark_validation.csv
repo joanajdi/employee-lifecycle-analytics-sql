@@ -1,0 +1,8 @@
+,sql,pyspark,match
+total_employees,3000,3000,True
+active_employees,2458,2458,True
+terminated_employees,387,387,True
+voluntary_terminations,321,321,True
+involuntary_terminations,66,66,True
+early_attrition_6m,96,98,False
+early_attrition_12m,176,176,True

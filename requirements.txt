@@ -3,3 +3,7 @@ numpy
 scikit-learn
 matplotlib
 jupyter
+pyspark
+pyarrow
+streamlit
+plotly

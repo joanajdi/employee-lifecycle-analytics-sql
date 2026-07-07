@@ -1,4 +1,4 @@
-# Employee Lifecycle Analytics SQL Project
+# Employee Lifecycle Analytics Project
 
 ## Executive Summary
 
@@ -70,6 +70,8 @@ Monetary values are reported as provided in the dataset. The original dataset do
 - Terminal
 - Git and GitHub
 - CSV exports for analytical outputs
+- PySpark
+- Parquet
 
 ---
 
@@ -123,9 +125,15 @@ employee-lifecycle-analytics-sql/
 │   ├── 13_attrition_analysis.sql
 │   ├── 14_export_attrition_outputs.sql
 │   ├── 15_final_employee_lifecycle_view.sql
-│   └── 16_export_final_view.sql
+│   ├── 16_export_final_view.sql
 │   ├── 17_cohort_early_attrition_analysis.sql
 │   └── 18_export_cohort_outputs.sql
+|
+├── pyspark/
+│   ├── 01_load_and_profile_hr_data_pyspark.py
+│   ├── 02_transform_employee_lifecycle_pyspark.py
+│   ├── 03_validate_pyspark_outputs.py
+│   └── README_pyspark.md
 │
 ├── outputs/
 │   ├── workforce_overall_kpis.csv
@@ -135,7 +143,7 @@ employee-lifecycle-analytics-sql/
 │   ├── engagement_segments.csv
 │   ├── attrition_by_department.csv
 │   ├── department_risk_summary.csv
-│   └── employee_lifecycle_summary.csv
+│   ├── employee_lifecycle_summary.csv
 │   ├── attrition_by_start_year.csv
 │   ├── attrition_by_start_month.csv
 │   ├── early_attrition_overall.csv
@@ -144,6 +152,10 @@ employee-lifecycle-analytics-sql/
 │   ├── early_attrition_by_performance_score.csv
 │   ├── early_attrition_by_engagement_segment.csv
 │   └── early_attrition_by_recruitment_status.csv
+│   └── pyspark/
+│       ├── employee_lifecycle_summary_pyspark_csv/
+│       ├── employee_lifecycle_summary_pyspark_parquet/
+│       └── sql_vs_pyspark_validation.csv
 │
 ├── docs/
 │   ├── data_dictionary.md
@@ -156,6 +168,7 @@ employee-lifecycle-analytics-sql/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+
 ```
 
 ---
@@ -417,6 +430,31 @@ The notebook uses the exported CSV files from the `outputs/` folder and creates 
 
 These visualizations help communicate the main temporal attrition patterns and make the SQL outputs easier to interpret.
 
+## PySpark Data Engineering Extension
+
+This project also includes a PySpark-based extension that simulates how the employee lifecycle analytics pipeline could be implemented in a Spark-based data engineering environment.
+
+The PySpark extension loads the same raw HR CSV files used in the SQL pipeline, performs schema inspection and data quality checks, applies cleaning and transformation logic, creates an employee-level analytical dataset, exports the result to CSV and Parquet, and validates key KPIs against the SQL outputs.
+
+This extension adds a data engineering layer to the project and demonstrates how the workflow could be adapted to a cloud/lakehouse environment such as Databricks.
+
+Main files:
+
+| File | Description |
+|---|---|
+| `pyspark/01_load_and_profile_hr_data_pyspark.py` | Loads and profiles the raw HR datasets using PySpark. |
+| `pyspark/02_transform_employee_lifecycle_pyspark.py` | Cleans, transforms and joins the HR datasets into a PySpark analytical output. |
+| `pyspark/03_validate_pyspark_outputs.py` | Validates key PySpark KPIs against the SQL pipeline outputs. |
+| `pyspark/README_pyspark.md` | Documents the PySpark extension and its Databricks relevance. |
+
+Main PySpark outputs:
+
+| Output | Description |
+|---|---|
+| `outputs/pyspark/employee_lifecycle_summary_pyspark_csv/` | CSV version of the PySpark analytical dataset. |
+| `outputs/pyspark/employee_lifecycle_summary_pyspark_parquet/` | Parquet version of the PySpark analytical dataset. |
+| `outputs/pyspark/sql_vs_pyspark_validation.csv` | Validation output comparing SQL and PySpark KPIs. |
+
 ## Key SQL Concepts Demonstrated
 
 This project demonstrates several SQL concepts commonly used in analytics workflows.
@@ -449,7 +487,7 @@ The project generates several CSV outputs, including:
 | --------------------------------------------| --------------------------------------------------- |
 | `workforce_overall_kpis.csv`                | Overall workforce KPIs                              |
 | `headcount_by_department.csv`               | Employee count by department                        |
-| `recruitment_status_distribution.csv`.      | Recruitment funnel status distribution              |
+| `recruitment_status_distribution.csv`       | Recruitment funnel status distribution              |
 | `training_outcome_distribution.csv`         | Training outcome distribution                       |
 | `engagement_segments.csv`                   | Low, medium and high engagement segments            |
 | `attrition_by_department.csv`               | Attrition metrics by department                     |
@@ -459,7 +497,7 @@ The project generates several CSV outputs, including:
 | `attrition_by_start_month.csv`              | Termination rate by employee start month            |
 | `early_attrition_overall.csv`               | Overall early attrition within 6 and 12 months      |
 | `early_attrition_by_department.csv`         | Early attrition metrics by department               |
-| `early_attrition_by_employee_type.csv`.     | Early attrition metrics by employee type            | 
+| `early_attrition_by_employee_type.csv`      | Early attrition metrics by employee type            | 
 | `early_attrition_by_performance_score.csv`  | Early attrition metrics by performance score        |
 | `early_attrition_by_engagement_segment.csv` | Early attrition metrics by engagement segment       |
 | `early_attrition_by_recruitment_status.csv` | Early attrition metrics by recruitment status       |
@@ -544,6 +582,28 @@ notebooks/cohort_early_attrition_visualization.ipynb
 
 The notebooks use CSV files from the `outputs/` folder as input.
 
+### Run the PySpark Extension
+
+After installing the required packages and ensuring Java is available, run:
+
+```bash
+python3 pyspark/01_load_and_profile_hr_data_pyspark.py
+```
+
+```bash
+python3 pyspark/02_transform_employee_lifecycle_pyspark.py
+```
+
+```bash
+python3 pyspark/03_validate_pyspark_outputs.py
+```
+
+The PySpark outputs will be saved under:
+
+```text
+outputs/pyspark/
+```
+
 ---
 
 ## Documentation
@@ -583,4 +643,6 @@ The SQL workflow transformed raw HR data into structured analytical tables, stan
 
 The Python modeling extension demonstrated how the final SQL analytical dataset can be reused for predictive attrition modeling. Several classification models were tested, and the analysis highlighted the importance of evaluating model performance, checking for data leakage and interpreting predictive results carefully.
 
-Overall, the project demonstrates an end-to-end analytics workflow, from data modeling and SQL analysis to documentation, version control and machine learning experimentation.
+The PySpark extension added a data engineering perspective by recreating part of the analytical pipeline in a Spark-based workflow, exporting the final dataset to CSV and Parquet, and validating key KPIs against the SQL outputs.
+
+Overall, the project demonstrates an end-to-end analytics workflow, from data modeling and SQL analysis to Python modeling, PySpark data engineering, documentation, version control and machine learning experimentation.

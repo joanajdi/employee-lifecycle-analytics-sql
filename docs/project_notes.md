@@ -424,6 +424,27 @@ The results suggest that early attrition may be particularly relevant in Softwar
 
 The lack of a clear relationship between engagement segment and early attrition reinforces a broader finding from the project: engagement alone does not strongly explain attrition patterns in this dataset.
 
+## PySpark Data Engineering Extension
+
+A PySpark extension was added to simulate how the employee lifecycle analytics pipeline could be implemented in a Spark-based data engineering environment.
+
+The extension uses the same raw HR CSV files as the SQL pipeline and performs the following steps:
+
+- loads the raw employee, recruitment, engagement and training datasets;
+- profiles row counts, schemas, duplicate IDs and missing values in key fields;
+- standardizes column names and date formats;
+- creates employee-level analytical flags;
+- creates engagement and training timing segments;
+- joins the four HR datasets into an employee-level analytical output;
+- exports the final dataset to CSV and Parquet;
+- validates key KPIs against the SQL pipeline outputs.
+
+The PySpark pipeline produced 3,000 employee-level rows, matching the SQL analytical output row count.
+
+The validation script confirmed consistency between the SQL and PySpark pipelines for the main comparable KPIs, including total employees, active employees, terminated employees, voluntary terminations and involuntary terminations.
+
+This extension adds a data engineering perspective to the project and shows how the workflow could be adapted to a Spark-based lakehouse environment such as Databricks.
+
 ## Notes for Future Analysis
 
 This project provides a strong analytical foundation. Future extensions could include:
