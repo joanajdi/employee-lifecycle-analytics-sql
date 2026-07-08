@@ -1,5 +1,25 @@
 # Employee Lifecycle Analytics Project
 
+## Live Dashboard
+
+Explore the interactive Streamlit dashboard here:
+
+[Open the Employee Lifecycle Analytics Dashboard](https://employee-lifecycle-analytics-sql-dashboard.streamlit.app/)
+
+## Dashboard Preview
+
+### Executive Overview
+
+![Dashboard Overview](assets/dashboard_overview.png)
+
+### Attrition Analysis
+
+![Dashboard Attrition](assets/dashboard_attrition.png)
+
+### Data Engineering Validation
+
+![Dashboard Data Engineering](assets/dashboard_data_engineering.png)
+
 ## Executive Summary
 
 - Analyzed 3,000 employee records across recruitment, workforce, engagement, training, performance and attrition data.
