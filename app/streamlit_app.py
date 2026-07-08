@@ -27,7 +27,6 @@ st.set_page_config(
 
 DARK = "#2F2C3F"
 DARK_2 = "#454158"
-DARK_3 = "#59546E"
 YELLOW = "#F6C431"
 GREEN = "#0F5C45"
 GREEN_2 = "#1F7A5C"
@@ -36,7 +35,6 @@ CARD = "#FFFFFF"
 TEXT = "#202431"
 MUTED = "#71717A"
 BORDER = "#E5E1DA"
-RED = "#FF4B4B"
 
 COLOR_SEQUENCE = [
     DARK,
@@ -68,12 +66,21 @@ def inject_css():
             padding-bottom: 3rem;
         }}
 
-        section[data-testid="stSidebar"] {{
+        /* Sidebar when open */
+        section[data-testid="stSidebar"][aria-expanded="true"] {{
             background: linear-gradient(180deg, {DARK} 0%, {DARK_2} 100%);
             border-right: none;
             width: 300px !important;
             min-width: 300px !important;
             max-width: 300px !important;
+        }}
+
+        /* Sidebar when collapsed: do NOT reserve empty space */
+        section[data-testid="stSidebar"][aria-expanded="false"] {{
+            width: 0px !important;
+            min-width: 0px !important;
+            max-width: 0px !important;
+            overflow: hidden !important;
         }}
 
         section[data-testid="stSidebar"] > div {{
@@ -88,6 +95,15 @@ def inject_css():
         section[data-testid="stSidebar"] .stMarkdown,
         section[data-testid="stSidebar"] p {{
             color: white !important;
+        }}
+
+        /* Collapsed sidebar button */
+        button[kind="header"] {{
+            border-radius: 999px !important;
+        }}
+
+        [data-testid="collapsedControl"] {{
+            margin-left: 0.35rem;
         }}
 
         #MainMenu {{visibility: hidden;}}
