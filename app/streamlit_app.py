@@ -62,7 +62,7 @@ def inject_css():
 
         .block-container {{
             max-width: 1420px;
-            padding-top: 1.4rem;
+            padding-top: 2.4rem;
             padding-bottom: 3rem;
         }}
 
@@ -86,22 +86,29 @@ def inject_css():
 
         h1, h2, h3 {{
             color: {TEXT};
+            line-height: 1.25 !important;
+            overflow: visible !important;
             letter-spacing: -0.04em;
         }}
 
         .dashboard-title {{
-            font-size: 2.1rem;
+            font-size: 2.25rem;
             font-weight: 900;
             color: {TEXT};
             letter-spacing: -0.055em;
-            margin-bottom: 0.2rem;
+            line-height: 1.25;
+            margin: 0 0 0.35rem 0;
+            padding-top: 0.25rem;
+            padding-bottom: 0.15rem;
+            overflow: visible;
+            display: block;
         }}
 
         .dashboard-subtitle {{
             color: {MUTED};
-            font-size: 0.96rem;
-            margin-bottom: 1.25rem;
-            line-height: 1.5;
+            font-size: 0.98rem;
+            margin-bottom: 1.35rem;
+            line-height: 1.55;
         }}
 
         .kpi-card {{
@@ -117,7 +124,7 @@ def inject_css():
             font-size: 2.1rem;
             font-weight: 900;
             letter-spacing: -0.04em;
-            line-height: 1;
+            line-height: 1.05;
         }}
 
         .kpi-label {{
@@ -146,7 +153,9 @@ def inject_css():
             color: {TEXT};
             font-size: 1.05rem;
             font-weight: 850;
+            line-height: 1.25;
             margin-bottom: 0.15rem;
+            overflow: visible;
         }}
 
         .card-subtitle {{
@@ -178,7 +187,7 @@ def inject_css():
         .brand-title {{
             color: white;
             font-size: 1.35rem;
-            line-height: 1.08;
+            line-height: 1.15;
             font-weight: 900;
             letter-spacing: -0.045em;
         }}
@@ -290,7 +299,7 @@ def style_fig(fig, height=360):
         paper_bgcolor="white",
         font=dict(color=TEXT, size=12),
         title_font=dict(color=TEXT, size=15),
-        margin=dict(l=20, r=20, t=50, b=30),
+        margin=dict(l=20, r=20, t=55, b=35),
         legend_title_text="",
         hoverlabel=dict(bgcolor="white", font_size=12, font_color=TEXT),
     )
