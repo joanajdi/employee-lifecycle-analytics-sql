@@ -27,6 +27,7 @@ st.set_page_config(
 
 DARK = "#2F2C3F"
 DARK_2 = "#454158"
+DARK_3 = "#59546E"
 YELLOW = "#F6C431"
 GREEN = "#0F5C45"
 GREEN_2 = "#1F7A5C"
@@ -35,6 +36,7 @@ CARD = "#FFFFFF"
 TEXT = "#202431"
 MUTED = "#71717A"
 BORDER = "#E5E1DA"
+RED = "#FF4B4B"
 
 COLOR_SEQUENCE = [
     DARK,
@@ -69,6 +71,13 @@ def inject_css():
         section[data-testid="stSidebar"] {{
             background: linear-gradient(180deg, {DARK} 0%, {DARK_2} 100%);
             border-right: none;
+            width: 300px !important;
+            min-width: 300px !important;
+            max-width: 300px !important;
+        }}
+
+        section[data-testid="stSidebar"] > div {{
+            padding: 1.35rem 1.1rem 1.25rem 1.1rem;
         }}
 
         section[data-testid="stSidebar"] * {{
@@ -166,52 +175,153 @@ def inject_css():
         }}
 
         .sidebar-brand {{
-            padding: 18px 6px 18px 6px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 18px;
+            padding: 14px 14px 13px 14px;
+            margin-bottom: 16px;
+        }}
+
+        .brand-row {{
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }}
 
         .brand-logo {{
-            width: 64px;
-            height: 64px;
-            border-radius: 20px;
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 16px;
             background: rgba(246,196,49,0.14);
-            border: 1px solid rgba(246,196,49,0.4);
+            border: 1px solid rgba(246,196,49,0.5);
             display: flex;
             align-items: center;
             justify-content: center;
             color: {YELLOW};
-            font-size: 1.55rem;
+            font-size: 1.1rem;
             font-weight: 900;
-            margin-bottom: 14px;
         }}
 
         .brand-title {{
             color: white;
-            font-size: 1.35rem;
-            line-height: 1.15;
+            font-size: 1.02rem;
+            line-height: 1.08;
             font-weight: 900;
-            letter-spacing: -0.045em;
+            letter-spacing: -0.035em;
         }}
 
         .brand-subtitle {{
-            color: rgba(255,255,255,0.72);
-            font-size: 0.82rem;
+            color: rgba(255,255,255,0.68);
+            font-size: 0.72rem;
             margin-top: 10px;
-            line-height: 1.45;
+            line-height: 1.35;
+        }}
+
+        .sidebar-section-title {{
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(255,255,255,0.55);
+            font-weight: 800;
+            margin: 10px 0 8px 2px;
+        }}
+
+        div[role="radiogroup"] {{
+            gap: 0.25rem;
         }}
 
         div[role="radiogroup"] label {{
-            background: rgba(255,255,255,0.08);
-            border-radius: 14px;
-            padding: 8px 10px;
-            margin-bottom: 4px;
+            background: rgba(255,255,255,0.075);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 13px;
+            padding: 7px 10px;
+            margin-bottom: 2px;
+            min-height: 34px;
         }}
 
         div[role="radiogroup"] label:hover {{
-            background: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.14);
+        }}
+
+        div[role="radiogroup"] label p {{
+            font-size: 0.86rem !important;
+            font-weight: 650;
+        }}
+
+        section[data-testid="stSidebar"] hr {{
+            margin: 0.85rem 0;
+            border-color: rgba(255,255,255,0.09);
         }}
 
         .stCheckbox label {{
-            font-size: 0.85rem !important;
+            font-size: 0.80rem !important;
+            min-height: 28px !important;
+        }}
+
+        .stCheckbox p {{
+            font-size: 0.80rem !important;
+        }}
+
+        div[data-testid="stExpander"] {{
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 14px;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }}
+
+        div[data-testid="stExpander"] summary {{
+            padding: 8px 10px !important;
+            font-size: 0.84rem !important;
+            font-weight: 800 !important;
+        }}
+
+        div[data-testid="stExpander"] details {{
+            border: none !important;
+        }}
+
+        div[data-testid="stExpander"] div[role="button"] p {{
+            font-size: 0.84rem !important;
+            font-weight: 800 !important;
+        }}
+
+        .filter-hint {{
+            color: rgba(255,255,255,0.56);
+            font-size: 0.72rem;
+            line-height: 1.35;
+            margin: -2px 0 10px 2px;
+        }}
+
+        .filtered-card {{
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 16px;
+            padding: 14px 14px 12px 14px;
+            margin-top: 12px;
+        }}
+
+        .filtered-label {{
+            color: rgba(255,255,255,0.66);
+            font-size: 0.74rem;
+            font-weight: 750;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }}
+
+        .filtered-value {{
+            color: {YELLOW};
+            font-size: 1.75rem;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            margin-top: 5px;
+        }}
+
+        .filtered-note {{
+            color: rgba(255,255,255,0.58);
+            font-size: 0.72rem;
+            margin-top: 3px;
         }}
 
         div[data-testid="stDataFrame"] {{
@@ -338,23 +448,24 @@ def safe_group_rate(df, group_col, numerator_col, id_col="employee_id", rate_nam
     return grouped
 
 
-def checkbox_filter(label, options, key_prefix):
-    st.sidebar.markdown(f"**{label}**")
+def compact_filter(label, options, key_prefix):
+    options = list(options)
 
-    all_key = f"{key_prefix}_all"
-    select_all = st.sidebar.checkbox("All", value=True, key=all_key)
+    with st.sidebar.expander(label, expanded=False):
+        select_all = st.checkbox("Select all", value=True, key=f"{key_prefix}_all")
 
-    if select_all:
-        return list(options)
+        if select_all:
+            st.caption(f"{len(options)} selected")
+            return options
 
-    selected = []
+        selected = []
+        for option in options:
+            checked = st.checkbox(str(option), value=True, key=f"{key_prefix}_{option}")
+            if checked:
+                selected.append(option)
 
-    for option in options:
-        checked = st.sidebar.checkbox(str(option), value=False, key=f"{key_prefix}_{option}")
-        if checked:
-            selected.append(option)
-
-    return selected
+        st.caption(f"{len(selected)} of {len(options)} selected")
+        return selected
 
 
 # ------------------------------------------------------------
@@ -392,8 +503,10 @@ employee = data["employee"]
 st.sidebar.markdown(
     f"""
     <div class="sidebar-brand">
-        <div class="brand-logo">HR</div>
-        <div class="brand-title">Employee<br>Lifecycle Analytics</div>
+        <div class="brand-row">
+            <div class="brand-logo">HR</div>
+            <div class="brand-title">Employee<br>Lifecycle Analytics</div>
+        </div>
         <div class="brand-subtitle">
             SQL, Python, PySpark and interactive analytics dashboard.
         </div>
@@ -401,6 +514,8 @@ st.sidebar.markdown(
     """,
     unsafe_allow_html=True,
 )
+
+st.sidebar.markdown('<div class="sidebar-section-title">Pages</div>', unsafe_allow_html=True)
 
 page = st.sidebar.radio(
     "Dashboard pages",
@@ -415,39 +530,52 @@ page = st.sidebar.radio(
         "Data Engineering",
         "Data Explorer",
     ],
+    label_visibility="collapsed",
 )
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("### Filters")
+st.sidebar.markdown('<div class="sidebar-section-title">Filters</div>', unsafe_allow_html=True)
+st.sidebar.markdown(
+    '<div class="filter-hint">Open each filter only when you need to customize the selected population.</div>',
+    unsafe_allow_html=True,
+)
 
 filtered = employee.copy()
 
 if "department_type" in employee.columns:
     departments = sorted(employee["department_type"].dropna().unique())
-    selected_departments = checkbox_filter("Department", departments, "dept")
+    selected_departments = compact_filter("Department", departments, "dept")
     if selected_departments:
         filtered = filtered[filtered["department_type"].isin(selected_departments)]
 
 if "employee_type" in employee.columns:
     employee_types = sorted(employee["employee_type"].dropna().unique())
-    selected_types = checkbox_filter("Employee type", employee_types, "type")
+    selected_types = compact_filter("Employee type", employee_types, "type")
     if selected_types:
         filtered = filtered[filtered["employee_type"].isin(selected_types)]
 
 if "performance_score" in employee.columns:
     performance_scores = sorted(employee["performance_score"].dropna().unique())
-    selected_performance = checkbox_filter("Performance score", performance_scores, "perf")
+    selected_performance = compact_filter("Performance score", performance_scores, "perf")
     if selected_performance:
         filtered = filtered[filtered["performance_score"].isin(selected_performance)]
 
 if "engagement_segment" in employee.columns:
     engagement_segments = sorted(employee["engagement_segment"].dropna().unique())
-    selected_engagement = checkbox_filter("Engagement segment", engagement_segments, "eng")
+    selected_engagement = compact_filter("Engagement segment", engagement_segments, "eng")
     if selected_engagement:
         filtered = filtered[filtered["engagement_segment"].isin(selected_engagement)]
 
-st.sidebar.markdown("---")
-st.sidebar.metric("Filtered records", f"{len(filtered):,}")
+st.sidebar.markdown(
+    f"""
+    <div class="filtered-card">
+        <div class="filtered-label">Filtered records</div>
+        <div class="filtered-value">{len(filtered):,}</div>
+        <div class="filtered-note">out of {len(employee):,} total employees</div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 
 # ------------------------------------------------------------
