@@ -12,13 +12,15 @@
 - Engagement shows only a weak relationship with attrition in this dataset.
 - The final view `employee_lifecycle_summary` combines recruitment, engagement, training, performance and attrition data into one reusable employee-level analytical dataset.
 
+---
+
 ## Project Overview
 
-This project analyzes the employee lifecycle using SQL, from recruitment to employee engagement, training and development, performance, and attrition.
+This project analyzes the employee lifecycle using SQL, Python, PySpark and Streamlit, from recruitment to employee engagement, training and development, performance, attrition and early attrition.
 
-The goal of the project is to explore how different stages of the employee lifecycle relate to one another and to identify patterns that can support HR decision-making in areas such as workforce planning, retention, engagement, and training investment.
+The goal of the project is to explore how different stages of the employee lifecycle relate to one another and to identify patterns that can support HR decision-making in areas such as workforce planning, retention, engagement, training investment and employee experience.
 
-This project was developed as part of my analytics portfolio, with a focus on applying SQL to a realistic HR analytics business case.
+This project was developed as part of my analytics portfolio, with a focus on applying data analytics, data engineering and machine learning concepts to a realistic HR analytics business case.
 
 ---
 
@@ -30,12 +32,13 @@ The main business objective is to answer the following question:
 
 To address this question, the project explores:
 
-* Workforce structure and employee composition
-* Recruitment pipeline and applicant characteristics
-* Training activity, cost, and outcomes
-* Employee engagement, satisfaction, and work-life balance
-* Attrition and retention patterns
-* Cross-functional employee lifecycle insights
+- Workforce structure and employee composition
+- Recruitment pipeline and applicant characteristics
+- Training activity, cost, and outcomes
+- Employee engagement, satisfaction, and work-life balance
+- Attrition and retention patterns
+- Cohort and early attrition patterns
+- Cross-functional employee lifecycle insights
 
 ---
 
@@ -43,12 +46,12 @@ To address this question, the project explores:
 
 The project uses four HR-related datasets:
 
-| Dataset                               | Description                                                                         |
-| ------------------------------------- | ----------------------------------------------------------------------------------- |
-| `employee_data.csv`                   | Employee demographic, employment, performance, department and attrition information |
-| `recruitment_data.csv`                | Applicant information, recruitment status, education, experience and desired salary |
-| `employee_engagement_survey_data.csv` | Employee engagement, satisfaction and work-life balance survey results              |
-| `training_and_development_data.csv`   | Training program, type, outcome, duration and cost information                      |
+| Dataset | Description |
+|---|---|
+| `employee_data.csv` | Employee demographic, employment, performance, department and attrition information |
+| `recruitment_data.csv` | Applicant information, recruitment status, education, experience and desired salary |
+| `employee_engagement_survey_data.csv` | Employee engagement, satisfaction and work-life balance survey results |
+| `training_and_development_data.csv` | Training program, type, outcome, duration and cost information |
 
 Each dataset contains 3,000 records.
 
@@ -66,12 +69,14 @@ Monetary values are reported as provided in the dataset. The original dataset do
 - pandas
 - scikit-learn
 - matplotlib
+- PySpark
+- Parquet
+- Streamlit
+- Plotly
 - VS Code
 - Terminal
 - Git and GitHub
 - CSV exports for analytical outputs
-- PySpark
-- Parquet
 
 ---
 
@@ -79,21 +84,21 @@ Monetary values are reported as provided in the dataset. The original dataset do
 
 The project is based on four main raw tables:
 
-| Table                  | Description                      |
-| ---------------------- | -------------------------------- |
-| `employees`            | Core employee information        |
-| `recruitment`          | Recruitment and applicant data   |
-| `engagement_surveys`   | Employee survey results          |
+| Table | Description |
+|---|---|
+| `employees` | Core employee information |
+| `recruitment` | Recruitment and applicant data |
+| `engagement_surveys` | Employee survey results |
 | `training_development` | Training and development records |
 
 In addition to the raw imported tables, standardized analytical views were created:
 
-| View                         | Description                                                                         |
-| ---------------------------- | ----------------------------------------------------------------------------------- |
-| `vw_employees_clean`         | Standardized employee view with tenure and attrition flags                          |
-| `vw_recruitment_clean`       | Standardized recruitment view with application month                                |
-| `vw_engagement_clean`        | Engagement view with engagement, satisfaction and work-life balance segments        |
-| `vw_training_clean`          | Training view with cost, duration and timing segments                               |
+| View | Description |
+|---|---|
+| `vw_employees_clean` | Standardized employee view with tenure and attrition flags |
+| `vw_recruitment_clean` | Standardized recruitment view with application month |
+| `vw_engagement_clean` | Engagement view with engagement, satisfaction and work-life balance segments |
+| `vw_training_clean` | Training view with cost, duration and timing segments |
 | `employee_lifecycle_summary` | Final analytical view combining employee, recruitment, engagement and training data |
 
 ---
@@ -108,6 +113,9 @@ employee-lifecycle-analytics-sql/
 │   ├── employee_engagement_survey_data.csv
 │   ├── recruitment_data.csv
 │   └── training_and_development_data.csv
+│
+├── app/
+│   └── streamlit_app.py
 │
 ├── sql/
 │   ├── 01_create_tables.sql
@@ -128,7 +136,7 @@ employee-lifecycle-analytics-sql/
 │   ├── 16_export_final_view.sql
 │   ├── 17_cohort_early_attrition_analysis.sql
 │   └── 18_export_cohort_outputs.sql
-|
+│
 ├── pyspark/
 │   ├── 01_load_and_profile_hr_data_pyspark.py
 │   ├── 02_transform_employee_lifecycle_pyspark.py
@@ -151,7 +159,7 @@ employee-lifecycle-analytics-sql/
 │   ├── early_attrition_by_employee_type.csv
 │   ├── early_attrition_by_performance_score.csv
 │   ├── early_attrition_by_engagement_segment.csv
-│   └── early_attrition_by_recruitment_status.csv
+│   ├── early_attrition_by_recruitment_status.csv
 │   └── pyspark/
 │       ├── employee_lifecycle_summary_pyspark_csv/
 │       ├── employee_lifecycle_summary_pyspark_parquet/
@@ -168,7 +176,6 @@ employee-lifecycle-analytics-sql/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
-
 ```
 
 ---
@@ -181,19 +188,19 @@ Before running the main analysis, standardized views were created to clean and e
 
 The standardized views include:
 
-* `vw_employees_clean`
-* `vw_recruitment_clean`
-* `vw_engagement_clean`
-* `vw_training_clean`
+- `vw_employees_clean`
+- `vw_recruitment_clean`
+- `vw_engagement_clean`
+- `vw_training_clean`
 
 These views add fields such as:
 
-* employee status groups;
-* tenure in days and years;
-* termination flags;
-* engagement, satisfaction and work-life balance segments;
-* training cost, duration and timing segments;
-* application month.
+- employee status groups;
+- tenure in days and years;
+- termination flags;
+- engagement, satisfaction and work-life balance segments;
+- training cost, duration and timing segments;
+- application month.
 
 ---
 
@@ -201,12 +208,12 @@ These views add fields such as:
 
 Data quality checks were performed to validate:
 
-* Row counts by table
-* Duplicate employee and applicant IDs
-* Missing values in key fields
-* Date inconsistencies
-* Referential integrity across tables
-* Categorical value consistency
+- row counts by table;
+- duplicate employee and applicant IDs;
+- missing values in key fields;
+- date inconsistencies;
+- referential integrity across tables;
+- categorical value consistency.
 
 All four tables were successfully imported, each containing 3,000 records. No duplicate records were found in the main ID fields, and no missing values were identified in the key fields checked.
 
@@ -220,21 +227,21 @@ This module analyzes the overall workforce composition.
 
 Key questions:
 
-* How many employees are active?
-* How is the workforce distributed by department?
-* Which departments have the highest active employee percentage?
-* How is performance distributed?
-* How does average employee rating vary by department?
+- How many employees are active?
+- How is the workforce distributed by department?
+- Which departments have the highest active employee percentage?
+- How is performance distributed?
+- How does average employee rating vary by department?
 
 Main findings:
 
-* The dataset contains 3,000 employees.
-* 2,458 employees are active, representing 81.93% of the workforce.
-* 542 employees are non-active, representing 18.07%.
-* Production is the largest department, with 2,020 employees, representing 67.33% of the workforce.
-* Production also has one of the lowest active employee percentages, at 78.61%.
-* Performance scores are highly concentrated in the `Fully Meets` category, representing 78.70% of employees.
-* The overall average employee rating is 2.97.
+- The dataset contains 3,000 employees.
+- 2,458 employees are active, representing 81.93% of the workforce.
+- 542 employees are non-active, representing 18.07%.
+- Production is the largest department, with 2,020 employees, representing 67.33% of the workforce.
+- Production also has one of the lowest active employee percentages, at 78.61%.
+- Performance scores are highly concentrated in the `Fully Meets` category, representing 78.70% of employees.
+- The overall average employee rating is 2.97.
 
 ---
 
@@ -244,20 +251,20 @@ This module explores the recruitment pipeline and applicant characteristics.
 
 Key questions:
 
-* How are applicants distributed across recruitment statuses?
-* How do experience and desired salary vary by recruitment status?
-* How does desired salary vary by education level?
-* What is the application period covered by the dataset?
+- How are applicants distributed across recruitment statuses?
+- How do experience and desired salary vary by recruitment status?
+- How does desired salary vary by education level?
+- What is the application period covered by the dataset?
 
 Main findings:
 
-* The recruitment dataset contains 3,000 applicants.
-* Applications range from 2023-05-06 to 2023-08-05.
-* The average applicant has 9.96 years of experience.
-* The average desired salary is 65,079.06.
-* Recruitment statuses are almost evenly distributed, with each status representing around 20% of applicants.
-* Experience and desired salary vary only slightly across recruitment statuses.
-* Education levels are also evenly distributed, with relatively small differences in average desired salary.
+- The recruitment dataset contains 3,000 applicants.
+- Applications range from 2023-05-06 to 2023-08-05.
+- The average applicant has 9.96 years of experience.
+- The average desired salary is 65,079.06.
+- Recruitment statuses are almost evenly distributed, with each status representing around 20% of applicants.
+- Experience and desired salary vary only slightly across recruitment statuses.
+- Education levels are also evenly distributed, with relatively small differences in average desired salary.
 
 Because the recruitment statuses are highly balanced, funnel conversion interpretations should be made with caution.
 
@@ -269,23 +276,23 @@ This module analyzes training activity, cost, duration and outcomes.
 
 Key questions:
 
-* What is the total training investment?
-* How are training outcomes distributed?
-* How do internal and external training compare?
-* Which departments receive the highest training investment?
-* How do training outcomes relate to performance?
+- What is the total training investment?
+- How are training outcomes distributed?
+- How do internal and external training compare?
+- Which departments receive the highest training investment?
+- How do training outcomes relate to performance?
 
 Main findings:
 
-* The dataset contains 3,000 training records, covering 3,000 unique employees.
-* The average training duration is 2.98 days.
-* Total training cost is 1,675,886.09.
-* Average training cost is 558.63.
-* Training outcomes are almost evenly distributed across Incomplete, Completed, Passed and Failed.
-* Internal and external training are nearly balanced.
-* Production accounts for the highest total training cost, mainly due to its large workforce size.
-* Software Engineering has the highest average training cost.
-* Employees in PIP have the highest average training cost, which may suggest higher investment in corrective or development-oriented training.
+- The dataset contains 3,000 training records, covering 3,000 unique employees.
+- The average training duration is 2.98 days.
+- Total training cost is 1,675,886.09.
+- Average training cost is 558.63.
+- Training outcomes are almost evenly distributed across Incomplete, Completed, Passed and Failed.
+- Internal and external training are nearly balanced.
+- Production accounts for the highest total training cost, mainly due to its large workforce size.
+- Software Engineering has the highest average training cost.
+- Employees in PIP have the highest average training cost, which may suggest higher investment in corrective or development-oriented training.
 
 ---
 
@@ -295,23 +302,23 @@ This module explores employee engagement, satisfaction and work-life balance.
 
 Key questions:
 
-* What are the average engagement, satisfaction and work-life balance scores?
-* How are engagement scores distributed?
-* Which departments have higher or lower engagement?
-* How does engagement vary by employee status and performance?
-* How many employees fall into low, medium and high engagement segments?
+- What are the average engagement, satisfaction and work-life balance scores?
+- How are engagement scores distributed?
+- Which departments have higher or lower engagement?
+- How does engagement vary by employee status and performance?
+- How many employees fall into low, medium and high engagement segments?
 
 Main findings:
 
-* The average engagement score is 2.94.
-* The average satisfaction score is 3.02.
-* The average work-life balance score is 2.99.
-* Low engagement employees represent 42.43% of the workforce.
-* High engagement employees represent 38.93%.
-* Production has the lowest average engagement score among major departments.
-* Admin Offices shows a low average satisfaction score but a relatively high work-life balance score.
-* Engagement differences between active and non-active employees are small.
-* Performance score does not show a clear linear relationship with engagement.
+- The average engagement score is 2.94.
+- The average satisfaction score is 3.02.
+- The average work-life balance score is 2.99.
+- Low engagement employees represent 42.43% of the workforce.
+- High engagement employees represent 38.93%.
+- Production has the lowest average engagement score among major departments.
+- Admin Offices shows a low average satisfaction score but a relatively high work-life balance score.
+- Engagement differences between active and non-active employees are small.
+- Performance score does not show a clear linear relationship with engagement.
 
 ---
 
@@ -321,26 +328,26 @@ This module analyzes employee attrition and retention patterns.
 
 Key questions:
 
-* What is the overall termination rate?
-* Which departments have the highest attrition?
-* How does voluntary and involuntary termination vary by department?
-* How does tenure differ between active and terminated employees?
-* How are attrition patterns related to performance, engagement and training?
+- What is the overall termination rate?
+- Which departments have the highest attrition?
+- How does voluntary and involuntary termination vary by department?
+- How does tenure differ between active and terminated employees?
+- How are attrition patterns related to performance, engagement and training?
 
 Main findings:
 
-* The overall termination rate is 12.90%.
-* The voluntary termination rate is 10.70%.
-* The involuntary termination rate is 2.20%.
-* Software Engineering has the highest termination rate, at 17.39%.
-* Production has the largest absolute number of terminations.
-* Production terminations are mostly voluntary.
-* IT/IS terminations are mostly involuntary, with 91.18% of terminations classified as terminated for cause.
-* Active employees have an average tenure of 3.72 years.
-* Voluntarily terminated employees have an average tenure of 1.44 years.
-* Employees terminated for cause have an average tenure of 1.33 years.
-* Employees in PIP have the highest termination rate, at 19.35%.
-* Engagement segment shows only a weak relationship with attrition.
+- The overall termination rate is 12.90%.
+- The voluntary termination rate is 10.70%.
+- The involuntary termination rate is 2.20%.
+- Software Engineering has the highest termination rate, at 17.39%.
+- Production has the largest absolute number of terminations.
+- Production terminations are mostly voluntary.
+- IT/IS terminations are mostly involuntary, with 91.18% of terminations classified as terminated for cause.
+- Active employees have an average tenure of 3.72 years.
+- Voluntarily terminated employees have an average tenure of 1.44 years.
+- Employees terminated for cause have an average tenure of 1.33 years.
+- Employees in PIP have the highest termination rate, at 19.35%.
+- Engagement segment shows only a weak relationship with attrition.
 
 ---
 
@@ -367,25 +374,27 @@ Main findings:
 - Employees in PIP had the highest 12-month early attrition rate by performance group, at 7.53%.
 - Engagement segment did not show a clear linear relationship with early attrition.
 
+---
+
 ## Final Analytical View
 
 The final view `employee_lifecycle_summary` combines employee, recruitment, engagement and training data into a single analytical layer.
 
 It includes:
 
-* Employee demographics
-* Employment status
-* Department and business unit
-* Tenure
-* Attrition flags
-* Performance indicators
-* Recruitment information
-* Engagement scores and segments
-* Satisfaction and work-life balance segments
-* Training program, cost, duration, outcome and timing
-* Analytical flags for low engagement, low performance and training outcomes
+- employee demographics;
+- employment status;
+- department and business unit;
+- tenure;
+- attrition flags;
+- performance indicators;
+- recruitment information;
+- engagement scores and segments;
+- satisfaction and work-life balance segments;
+- training program, cost, duration, outcome and timing;
+- analytical flags for low engagement, low performance and training outcomes.
 
-This view can be reused for further SQL exploration, reporting, dashboard development or analysis in tools such as Power BI, Excel, Tableau or Python.
+This view can be reused for further SQL exploration, reporting, dashboard development or analysis in tools such as Power BI, Excel, Tableau, Python or Streamlit.
 
 ---
 
@@ -414,6 +423,8 @@ To address this, a second Random Forest model was trained without tenure variabl
 
 This comparison showed that the model with tenure performs better as an exploratory model, while the model without tenure provides a more realistic view of the dataset's predictive limitations.
 
+---
+
 ## Cohort and Early Attrition Visualizations
 
 A second Python notebook was created to visualize the cohort and early attrition outputs generated in SQL.
@@ -429,6 +440,8 @@ The notebook uses the exported CSV files from the `outputs/` folder and creates 
 - 12-month early attrition by recruitment status.
 
 These visualizations help communicate the main temporal attrition patterns and make the SQL outputs easier to interpret.
+
+---
 
 ## PySpark Data Engineering Extension
 
@@ -454,6 +467,40 @@ Main PySpark outputs:
 | `outputs/pyspark/employee_lifecycle_summary_pyspark_csv/` | CSV version of the PySpark analytical dataset. |
 | `outputs/pyspark/employee_lifecycle_summary_pyspark_parquet/` | Parquet version of the PySpark analytical dataset. |
 | `outputs/pyspark/sql_vs_pyspark_validation.csv` | Validation output comparing SQL and PySpark KPIs. |
+
+---
+
+## Streamlit Interactive Dashboard
+
+This project includes a Streamlit dashboard that turns the SQL, Python and PySpark outputs into an interactive analytics application.
+
+The dashboard allows users to explore:
+
+- executive workforce KPIs;
+- workforce composition;
+- recruitment patterns;
+- training investment and outcomes;
+- engagement and satisfaction patterns;
+- attrition and retention metrics;
+- cohort and early attrition analysis;
+- SQL vs PySpark validation results;
+- the final employee-level analytical dataset.
+
+The app uses CSV outputs generated by the SQL pipeline and includes interactive filters for department, employee type, performance score and engagement segment.
+
+Main file:
+
+| File | Description |
+|---|---|
+| `app/streamlit_app.py` | Interactive Streamlit dashboard built with pandas and Plotly. |
+
+To run the dashboard locally:
+
+```bash
+python3 -m streamlit run app/streamlit_app.py
+```
+
+---
 
 ## Key SQL Concepts Demonstrated
 
@@ -483,60 +530,60 @@ These concepts were applied across a full SQL analytics workflow: database creat
 
 The project generates several CSV outputs, including:
 
-| Output                                      | Description                                         |
-| --------------------------------------------| --------------------------------------------------- |
-| `workforce_overall_kpis.csv`                | Overall workforce KPIs                              |
-| `headcount_by_department.csv`               | Employee count by department                        |
-| `recruitment_status_distribution.csv`       | Recruitment funnel status distribution              |
-| `training_outcome_distribution.csv`         | Training outcome distribution                       |
-| `engagement_segments.csv`                   | Low, medium and high engagement segments            |
-| `attrition_by_department.csv`               | Attrition metrics by department                     |
-| `department_risk_summary.csv`               | Combined department-level risk summary              |
-| `employee_lifecycle_summary.csv`            | Final employee-level analytical dataset             |
-| `attrition_by_start_year.csv`               | Termination rate by employee start year             |
-| `attrition_by_start_month.csv`              | Termination rate by employee start month            |
-| `early_attrition_overall.csv`               | Overall early attrition within 6 and 12 months      |
-| `early_attrition_by_department.csv`         | Early attrition metrics by department               |
-| `early_attrition_by_employee_type.csv`      | Early attrition metrics by employee type            | 
-| `early_attrition_by_performance_score.csv`  | Early attrition metrics by performance score        |
-| `early_attrition_by_engagement_segment.csv` | Early attrition metrics by engagement segment       |
-| `early_attrition_by_recruitment_status.csv` | Early attrition metrics by recruitment status       |
+| Output | Description |
+|---|---|
+| `workforce_overall_kpis.csv` | Overall workforce KPIs |
+| `headcount_by_department.csv` | Employee count by department |
+| `recruitment_status_distribution.csv` | Recruitment funnel status distribution |
+| `training_outcome_distribution.csv` | Training outcome distribution |
+| `engagement_segments.csv` | Low, medium and high engagement segments |
+| `attrition_by_department.csv` | Attrition metrics by department |
+| `department_risk_summary.csv` | Combined department-level risk summary |
+| `employee_lifecycle_summary.csv` | Final employee-level analytical dataset |
+| `attrition_by_start_year.csv` | Termination rate by employee start year |
+| `attrition_by_start_month.csv` | Termination rate by employee start month |
+| `early_attrition_overall.csv` | Overall early attrition within 6 and 12 months |
+| `early_attrition_by_department.csv` | Early attrition metrics by department |
+| `early_attrition_by_employee_type.csv` | Early attrition metrics by employee type |
+| `early_attrition_by_performance_score.csv` | Early attrition metrics by performance score |
+| `early_attrition_by_engagement_segment.csv` | Early attrition metrics by engagement segment |
+| `early_attrition_by_recruitment_status.csv` | Early attrition metrics by recruitment status |
 
 ---
 
 ## How to Run the Project
 
-1. Create the PostgreSQL database:
+### 1. Create the PostgreSQL database
 
 ```bash
 createdb employee_lifecycle_db
 ```
 
-2. Create the database tables:
+### 2. Create the database tables
 
 ```bash
 psql employee_lifecycle_db -f sql/01_create_tables.sql
 ```
 
-3. Import the CSV files:
+### 3. Import the CSV files
 
 ```bash
 psql employee_lifecycle_db -f sql/02_import_data.sql
 ```
 
-4. Create standardized views:
+### 4. Create standardized views
 
 ```bash
 psql employee_lifecycle_db -f sql/03_cleaning_and_standardization.sql
 ```
 
-5. Run data quality checks:
+### 5. Run data quality checks
 
 ```bash
 psql employee_lifecycle_db -f sql/04_data_quality_checks.sql
 ```
 
-6. Run the analysis scripts:
+### 6. Run the core analysis scripts
 
 ```bash
 psql employee_lifecycle_db -f sql/05_workforce_overview.sql
@@ -544,10 +591,22 @@ psql employee_lifecycle_db -f sql/07_recruitment_funnel.sql
 psql employee_lifecycle_db -f sql/09_training_analysis.sql
 psql employee_lifecycle_db -f sql/11_engagement_analysis.sql
 psql employee_lifecycle_db -f sql/13_attrition_analysis.sql
+```
+
+### 7. Create and export the final analytical view
+
+```bash
+psql employee_lifecycle_db -f sql/15_final_employee_lifecycle_view.sql
+psql employee_lifecycle_db -f sql/16_export_final_view.sql
+```
+
+### 8. Run cohort and early attrition analysis
+
+```bash
 psql employee_lifecycle_db -f sql/17_cohort_early_attrition_analysis.sql
 ```
 
-7. Export analytical outputs:
+### 9. Export analytical outputs
 
 ```bash
 psql employee_lifecycle_db -f sql/06_export_workforce_outputs.sql
@@ -556,13 +615,6 @@ psql employee_lifecycle_db -f sql/10_export_training_outputs.sql
 psql employee_lifecycle_db -f sql/12_export_engagement_outputs.sql
 psql employee_lifecycle_db -f sql/14_export_attrition_outputs.sql
 psql employee_lifecycle_db -f sql/18_export_cohort_outputs.sql
-```
-
-8. Create and export the final analytical view:
-
-```bash
-psql employee_lifecycle_db -f sql/15_final_employee_lifecycle_view.sql
-psql employee_lifecycle_db -f sql/16_export_final_view.sql
 ```
 
 ### Run the Python Notebooks
@@ -604,16 +656,26 @@ The PySpark outputs will be saved under:
 outputs/pyspark/
 ```
 
+### Run the Streamlit Dashboard
+
+After generating the SQL and PySpark outputs, run:
+
+```bash
+python3 -m streamlit run app/streamlit_app.py
+```
+
+The dashboard uses the exported CSV files from the `outputs/` folder.
+
 ---
 
 ## Documentation
 
 Additional documentation is available in the `docs/` folder:
 
-| File                 | Description                                                                        |
-| -------------------- | ---------------------------------------------------------------------------------- |
-| `data_dictionary.md` | Describes the main tables, views, fields and derived variables                     |
-| `project_notes.md`   | Summarizes data quality findings, analytical observations and interpretation notes |
+| File | Description |
+|---|---|
+| `data_dictionary.md` | Describes the main tables, views, fields and derived variables |
+| `project_notes.md` | Summarizes data quality findings, analytical observations and interpretation notes |
 
 ---
 
@@ -645,4 +707,6 @@ The Python modeling extension demonstrated how the final SQL analytical dataset 
 
 The PySpark extension added a data engineering perspective by recreating part of the analytical pipeline in a Spark-based workflow, exporting the final dataset to CSV and Parquet, and validating key KPIs against the SQL outputs.
 
-Overall, the project demonstrates an end-to-end analytics workflow, from data modeling and SQL analysis to Python modeling, PySpark data engineering, documentation, version control and machine learning experimentation.
+The Streamlit dashboard transformed the project outputs into an interactive analytics application, making the insights easier to explore, communicate and demonstrate.
+
+Overall, the project demonstrates an end-to-end analytics workflow, from data modeling and SQL analysis to Python modeling, PySpark data engineering, interactive dashboard development, documentation, version control and machine learning experimentation.
