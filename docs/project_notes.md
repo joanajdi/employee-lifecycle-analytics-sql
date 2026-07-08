@@ -445,6 +445,26 @@ The validation script confirmed consistency between the SQL and PySpark pipeline
 
 This extension adds a data engineering perspective to the project and shows how the workflow could be adapted to a Spark-based lakehouse environment such as Databricks.
 
+## Streamlit Dashboard Extension
+
+A Streamlit dashboard was added to make the project interactive and easier to communicate.
+
+The dashboard includes pages for:
+
+- Executive Overview
+- Workforce
+- Recruitment
+- Training
+- Engagement
+- Attrition
+- Early Attrition
+- Data Engineering
+- Data Explorer
+
+The app uses the exported CSV outputs from the SQL pipeline and includes filters for department, employee type, performance score and engagement segment.
+
+This extension turns the project into an interactive analytics product that can be shared with recruiters, hiring managers and stakeholders through a public Streamlit link.
+
 ## Notes for Future Analysis
 
 This project provides a strong analytical foundation. Future extensions could include:
